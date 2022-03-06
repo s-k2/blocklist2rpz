@@ -1,0 +1,47 @@
+blocklists2rpz
+==============
+
+A bash script to download blocklists and convert them to a response policy zone
+which bind9 can use
+
+
+Usage
+-----
+
+    blocklists2rpz [LIST-OF-LISTS-URL]
+
+This downloads the url given as first parameter and downloads each list
+mentioned where. Those lists will be merged, filtered and outputted as response
+policy zone-file. Output is written to STDOUT.
+
+Additionally the list is filtered:
+
+- duplicates are removed
+- invalid hostnames and ip addresses (for lists in the /etc/hosts-format) will
+  be removed
+- subdomains for parent-domains already in the filter-list will be omitted
+
+For each hostname a 'CNAME .' record is created. This makes bind9 respond with
+NXDOMAIN. To block possible subdomains another record for '*.<hostname>' is
+created.
+
+If the scripts first and only parameter is omited, the blocklists of
+<https://v.firebog.net/hosts/lists.php?type=tick> will be used.
+
+
+Installation
+------------
+
+Just download the script and execute it.
+
+Additionally a package for Debian is available in the releases section.  You
+can build and install it with:
+
+    $ make deb
+    # apt-get install debian/blocklists2rpz-0.1.0.deb
+
+
+License
+-------
+
+This software is licensed under [GPLv3](COPYING).

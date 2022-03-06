@@ -1,0 +1,9 @@
+Package: blocklists2rpz
+Version: 0.1.0
+Section: admin
+Priority: optional
+Architecture: all
+Installed-Size: 4
+Depends: bash, mawk | gawk, wget
+Maintainer: Stefan Klein <s-k2@caipora.net>
+Description: download blocklists and convert them to a response policy zone
