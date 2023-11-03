@@ -36,7 +36,7 @@ remove_empty_lines() {
 }
 
 remove_invalid_hostnames() {
-	grep -vF '/' | grep -vF '_'
+	grep -P '^[0-9\x61-\x7A\x2E\x2D]+$'
 }
 
 remove_trailing_dots() {
