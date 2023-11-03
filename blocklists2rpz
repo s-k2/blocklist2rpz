@@ -71,10 +71,9 @@ output_rpz() {
 	cat <<EOF
 \$ORIGIN adblock.
 \$TTL 1h
-
 @                  IN  SOA       localhost. root.localhost. (
-                                 $(date +%s)  ; serial
-                                 6h          ; refresh
+				 $(date +%s)  ; serial
+				 6h          ; refresh
                                  1h          ; retry
                                  1w          ; expire
                                  1d )        ; minimum TTL
