@@ -84,7 +84,10 @@ EOF
 	while read hostname
 	do
 		echo "${hostname} CNAME ."
-		echo "*.${hostname} CNAME ."
+		if [ "${#hostname}" -le 243 ] # i expected 253-2, but testing proved me wrong (maybe some rpz-overhead?)
+		then
+			echo "*.${hostname} CNAME ."
+		fi
 	done
 }
 
