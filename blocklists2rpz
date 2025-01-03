@@ -81,14 +81,8 @@ output_rpz() {
                    IN  NS        localhost.
 
 EOF
-	while read hostname
-	do
-		echo "${hostname} CNAME ."
-		if [ "${#hostname}" -le 243 ] # i expected 253-2, but testing proved me wrong (maybe some rpz-overhead?)
-		then
-			echo "*.${hostname} CNAME ."
-		fi
-	done
+	# i expected 253-2 in both cases, but testing proved me wrong (maybe some rpz-overhead?)
+	awk 'length($0) <= 245 { print $0 " CNAME ." } length($0) <= 243 { print "*." $0 " CNAME ." }'
 }
 
 download_list | convert_to_unix_lf | remove_comments | remove_empty_lines | lowercase | \
